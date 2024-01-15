@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
 
 return [
-
+ 
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -28,7 +28,7 @@ return [
     | services the application utilizes. Set this in your ".env" file.
     |
     */
-
+ 
     'env' => env('APP_ENV', 'production'),
 
     /*
@@ -83,7 +83,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => env('APP_LOCALE','en'),
 
     /*
     |--------------------------------------------------------------------------
