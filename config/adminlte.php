@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'Proyecto Comisaria',
+    'title' => 'Control Flota Vehicular',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -63,12 +63,12 @@ return [
     |
     */
 
-    'logo' => '<b>Comisaria</b>',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-    'logo_img_class' => 'brand-image img-circle elevation-3',
+    'logo' => '<b>Control Flota Vehicular</b>',
+    'logo_img' => '',
+    'logo_img_class' => '',
     'logo_img_xl' => null,
-    'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'Admin Logo',
+    'logo_img_xl_class' => '',
+    'logo_img_alt' => '',
 
     /*
     |--------------------------------------------------------------------------
@@ -388,29 +388,142 @@ return [
         [
             'text'       => 'Administracion',
             'icon' => 'fas fa-copy',
-            'submenu'        =>[  
-                [ 'text' => 'Usuarios',
-                  'url'=> '/users'
+            'submenu'        =>[
+
+               [
+                'text'=> 'Registros',
+                'icon'=> 'fas fa-map-pin',
+                'submenu' => [
+                [ 'text' => 'provincia',
+                'icon'=> 'fas fa-map-pin',
+                  'url'=> '/provincias'
+                ],
+                [ 'text' => 'Distritos',
+                'icon'=> 'fas fa-map-pin',
+                  'url'=> '/distritos'
+                ],
+                [ 'text' => 'Parroquias',
+                'icon'=> 'fas fa-map-pin',
+                  'url'=> '/parroquias'
                 ],
                 [ 'text' => 'Circuitos',
+                'icon'=> 'fas fa-map-pin',
                   'url'=> '/circuitos'
                 ],
                 [ 'text' => 'subcircuitos',
+                'icon'=> 'fas fa-map-pin',
                   'url'=> '/subcircuitos'
+                ],
+            ],
+            ],
+                [
+                    'text'    => 'Dependencia',
+                    'icon'=> 'fas fa-map',
+                    'submenu' => [
+                        [
+                            'text' => 'Registro Dependencia',
+                            'icon'=> 'fas fa-map',
+                            'url'  => 'registro_dependencia',
+                        ],
+                          [
+                            'text' => 'Listado Dependencia ',
+                            'icon'=> 'fas fa-map',
+                            'url'  => 'listado_dependencias',
+                        ],
+
+                    ],
+                ],
+
+                [
+                    'text' => 'Personal',
+                    'icon'=>'fas fa-users',
+                    'url'=> '#',
+                    'submenu'=>[
+                        [
+                            'text' => 'Registro Personal',
+                            'icon'=>'fas fa-user',
+                            'url'  => 'personals',
+                        ],
+                        [
+                            'text' => 'Listado Personal',
+                            'icon'=>'fas fa-list',
+                            'url'  => 'list_personals',
+                        ],
+
+
+                    ],
+                ],
+
+                [
+                    'text' => 'Flota Vehicular',
+                    'icon'=>'fas fa-car',
+                    'url'=> '#',
+                    'submenu'=>[
+                        [
+                            'text' => 'Registro Vehículo',
+                            'icon'=>'fas fa-car',
+                            'url'  => 'vehiculos',
+                        ],
+                        [
+                            'text' => 'Listado Vehículo',
+                            'icon'=>'fas fa-list',
+                            'url'  => 'list_vehiculos',
+                        ],
+                    ],
+                ],
+
+
+            ],
+
+        ],
+
+
+        [
+            'text'       => 'Gestión de Asignación y Vinculación',
+            'icon' => 'fas fa-tasks',
+            'submenu'        =>[
+                [ 'text' => 'Asignar Personal a Subcircuito',
+                'icon'=> 'fas fa-user',
+                  'url'=> '/asignar_peronal_subcircuitos'
+                ],
+                [ 'text' => 'Asignar Vehículo a Subcircuito',
+                'icon'=> 'fas fa-car',
+                  'url'=> '/asignar_vehiculo_subcircuitos'
+                ],
+                [ 'text' => 'Asignar Vehículo a Personal',
+                  'icon'=> 'fas fa-user-plus',
+                  'url'=> '/asignar_peronal_vehiculos'
+                ],
+            ],
+
+        ],
+
+            [
+            'text'       => 'Mantenimiento Preventivo',
+            'icon' => 'fas  fa-wrench',
+            'submenu'        =>[
+                [ 'text' => 'Registrar Solicitud',
+                'icon' => 'fas  fa-wrench',
+                  'url'=> '/solicituds'
+                ],
+                [ 'text' => 'Recepción y Registro de Mantenimiento',
+                'icon' => 'fas  fa-wrench',
+                  'url'=> '/recepreg'
+                ],
+                [ 'text' => 'Listado Mantenimiento Preventivo',
+                'icon' => 'fas  fa-wrench',
+                  'url'=> '/list_mps'
                 ],
 
             ],
 
-
-
-
-
         ],
+
 
         [
             'text'       => 'Eventos',
             'icon' => 'fas fa-copy',
-            'submenu'        =>[  
+            'submenu'        =>[
                 [ 'text' => 'Lista de Eventos',
                   'url'=> '/events'
                 ],
@@ -425,7 +538,6 @@ return [
 
 
         ],
-
 
     ],
 
@@ -464,6 +576,62 @@ return [
     */
 
     'plugins' => [
+            'KrajeeFileinput' => [
+        'active' => false,
+        'files' => [
+            [
+                'type' => 'css',
+                'asset' => true,
+                'location' => 'vendor/krajee-fileinput/css/fileinput.min.css',
+            ],
+            [
+                'type' => 'css',
+                'asset' => true,
+                'location' => 'vendor/krajee-fileinput/themes/explorer-fa5/theme.min.css',
+            ],
+            [
+                'type' => 'js',
+                'asset' => true,
+                'location' => 'vendor/krajee-fileinput/js/fileinput.min.js',
+            ],
+            [
+                'type' => 'js',
+                'asset' => true,
+                'location' => 'vendor/krajee-fileinput/themes/fa5/theme.min.js',
+            ],
+            [
+                'type' => 'js',
+                'asset' => true,
+                'location' => 'vendor/krajee-fileinput/themes/explorer-fa5/theme.min.js',
+            ],
+            [
+                'type' => 'js',
+                'asset' => true,
+                'location' => 'vendor/krajee-fileinput/js/locales/es.js',
+            ],
+        ],
+    ],
+
+         'TempusDominusBs4' => [
+        'active' => true,
+        'files' => [
+            [
+                'type' => 'js',
+                'asset' => true,
+                'location' => 'vendor/moment/moment.min.js',
+            ],
+            [
+                'type' => 'js',
+                'asset' => true,
+                'location' => 'vendor/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js',
+            ],
+            [
+                'type' => 'css',
+                'asset' => true,
+                'location' => 'vendor/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css',
+            ],
+        ],
+        ],
         'Datatables' => [
             'active' => true,
             'files' => [

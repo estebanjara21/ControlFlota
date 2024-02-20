@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table ->text('descripcion');
             $table ->integer('estado');
+             $table ->text('codigo_subcircuito');
             $table->unsignedBigInteger('id_circuito');
             $table->timestamps();
             // Restricción de clave foránea

@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table ->text('descripcion');
             $table ->integer('estado');
+            $table ->text('codigo_circuito');
+            $table ->text('id_distrito');
             $table->timestamps();
         });
     }

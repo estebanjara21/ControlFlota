@@ -73,12 +73,22 @@ class CircuitoController extends Controller
     }
 
 
+
+      public function listado_subcircuitos(Request $request)
+    {
+          $circuitos = Circuito::pluck('descripcion', 'id');
+    //return view('subcircuitos')->with('circuitos', $circuitos);
+
+        return response()->json($circuitos);
+    }
+
  //
      public function registrar_circuito(Request $request)
     {
         // Validación de datos del formulario
         $request->validate([
             'iCircuito' => 'required',
+            'iCodCircuito' => 'required',
         
             // Agrega más validaciones según tus campos
         ]);
@@ -86,6 +96,8 @@ class CircuitoController extends Controller
         // Crear una nueva instancia del modelo y asignar valores
         $circuito= new Circuito();
         $circuito->descripcion = $request->input('iCircuito');
+        $circuito->codigo_circuito = $request->input('iCodCircuito');
+        $circuito->id_distrito = $request->input('selDistrito');
         $circuito->estado = '1';
         
         // Asigna otros campos según tu formulario
@@ -138,13 +150,14 @@ public function eliminarCircuito($id)
 
 // app/Http/Controllers/CircuitoController.php
 
-    public function actualizarCircuito($id,Request $cont)
-    {
-        $circuito = Circuito::find($id);
+    public function actualizarCircuito(Request $cont)
+    {         $circuito = Circuito::find($cont->input('id'));
 
         if ($circuito) {
             // Actualiza la descripción del circuito con la nueva información proporcionada
             $circuito->descripcion = $cont->input('circuito');
+            $circuito->codigo_circuito = $cont->input('cod_circuito');
+            
             $circuito->save();
 
             return response()->json(['success' => true], 200);
@@ -154,6 +167,13 @@ public function eliminarCircuito($id)
     }
 
 
+ public function obtenerCirxdis(Request $request)
+    {
+        $id_distrito = $request->input('idDis');
 
+        $id_distrito = Circuito::where('id_distrito', $id_distrito)->pluck('descripcion', 'id');
+
+        return response()->json($id_distrito);
+    }
 
 }
