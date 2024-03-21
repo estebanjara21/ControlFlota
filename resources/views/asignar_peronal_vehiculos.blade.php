@@ -28,7 +28,7 @@
 
                                              @else {{"VACIO"}}
                                             @endif
-
+zzzz
                                                 <br>
                                                 <b>Placa: </b>{{$event->placa}}<br>
                                             @elseif(empty($event->id_subcircuito))

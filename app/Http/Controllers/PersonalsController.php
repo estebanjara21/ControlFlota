@@ -67,7 +67,7 @@ class PersonalsController extends Controller
     {
         // Validación de datos del formulario
         $request->validate([
-            'iIden' => 'required',
+            'Identificación' => 'required|numeric',
             'iNomApe' => 'required',
             'ifechanac' => 'required',
             'iTipoSangre' => 'required',
@@ -75,14 +75,15 @@ class PersonalsController extends Controller
             'iTelefono' => 'required',
             'selRango' => 'required',
             'selDependecia' => 'required',
-        
-        
+        [
+            'Identificación.numeric' => 'El campo Identificación debe ser un valor numérico.',
             // Agrega más validaciones según tus campos
+        ]
         ]);
 
         // Crear una nueva instancia del modelo y asignar valores
         $personal= new Personals();
-        $personal->identificacion = $request->input('iIden');
+        $personal->identificacion = $request->input('Identificación');
         $personal->nom_ape = $request->input('iNomApe');
         $personal->fecha_nac = $request->input('ifechanac');
         $personal->tipo_sangre = $request->input('iTipoSangre');
@@ -91,7 +92,7 @@ class PersonalsController extends Controller
         $personal->rango = $request->input('selRango');
         $personal->dependencia = $request->input('selDependecia');
         $personal->estado = '1';
-        
+
         // Asigna otros campos según tu formulario
 
         // Guardar el modelo en la base de datos
@@ -121,7 +122,7 @@ public function eliminarPersonal($id)
 
  public function actualizarPersonal(Request $cont)
 
-    { 
+    {
 
         $personal = Personals::find($cont->input('id'));
 
@@ -134,7 +135,7 @@ public function eliminarPersonal($id)
             $personal->telefono = $cont->input('telefono');
             $personal->rango = $cont->input('rango');
             $personal->dependencia = $cont->input('dependencia');
-            
+
             $personal->save();
 
             return response()->json(['success' => true], 200);

@@ -33,15 +33,30 @@
                                         <td>{{$event->tipo_evento}}</td>
                                         <td>{{$event->circuito_nombre}}</td>
                                         <td>{{$event->subcircuito_nombre}}</td>
-                                       
-                                
-                                     
+
+
+
                                 </tr>
                             @endforeach
-                            
+
                     </x-adminlte-datatable>
                 </div>
-            </div>
+            </div id="totalEventosCircuito">0</div>
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            $('#selCircuito').change(function () {
+                var idCircuito = $(this).val();
+
+                $.ajax({
+                    type: 'GET',
+                    url: '/getTotalEventosPorCircuito/' + idCircuito,
+                    success: function (data) {
+                        $('#totalEventosCircuito').text(data.total);
+                    }
+                });
+            });
+        });
+    </script>
 @stop

@@ -44,7 +44,7 @@
 
                                                 $.ajax({
                                                     type: 'GET',
-                                                    url: '/proyecto_dos/public/obtener-subcircuitos',
+                                                    url: 'obtener-subcircuitos',
                                                     data: { id_circuito: idCircuito },
                                                     success: function (data) {
                                                         $('#selSubcircuito').empty();
@@ -62,7 +62,7 @@
                                     </script>
                                 </x-adminlte-select2>
 
-                            
+
                         </div>
                         <div class="row">
                             <x-adminlte-select name="selTipo" label="Tipo" fgroup-class="col-md-12">
@@ -99,10 +99,10 @@
                             <div class="form-group col-md-12">
                                  <x-adminlte-button type="submit" label="Registrar" theme="primary" icon="fas fa-save" class="w-100"/>
                             </div>
-                   
+
                     </div>
                     </div>
-                  
+
                 </div>
             </form>
             </div>

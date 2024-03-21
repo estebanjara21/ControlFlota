@@ -2,7 +2,7 @@
 
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Bienvenido</h1>
+    <h1 class="m-0 text-dark">Bienvenido, ingreso con exitoso. </h1>
 @stop
 
 @section('content')

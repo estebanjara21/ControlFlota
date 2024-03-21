@@ -520,6 +520,7 @@ return [
         ],
 
 
+
         [
             'text'       => 'Eventos',
             'icon' => 'fas fa-copy',
@@ -529,16 +530,27 @@ return [
                 ],
                 [ 'text' => 'Registro de Eventos',
                   'url'=> '/events-create'
-                ]
+                ],
+
 
             ],
 
-
-
-
-
         ],
-
+       [
+            'text'=> 'Examen',
+            'submenu'=>[
+            [
+            'text' => 'Registrar Armamento',
+            'url' => '/rastrillo',],
+            ['text'=>'Listado Rastrillo',
+            'url'=>'/list_rastrillo',
+            ],
+            [
+                'text'=>'Asignar Pertrechos a Personal',
+                'url'=>'/asignar_armamento_personal',
+            ],
+        ],
+    ],
     ],
 
     /*

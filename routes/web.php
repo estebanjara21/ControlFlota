@@ -17,6 +17,8 @@ use App\Http\Controllers\AsignarPersonalVehiculosController;
 use App\Http\Controllers\SolicitudController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\MantenimientoController;
+use App\Http\Controllers\ExamenController;
+use App\Http\Controllers\AsignarArmamentoPersonalController;
 /*AsignarVehiculoSubcircuitosController
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,6 +29,23 @@ use App\Http\Controllers\MantenimientoController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+// Ruta para mostrar el formulario
+
+
+Route::post('/registrar_rastrillo', [ExamenController::class, 'registrar_rastrillo'])->name('registrar_rastrillo');
+Route::get('/obtener-dependencia-group', [ExamenController::class, 'obtenerdepengroup'])->name('obtener-dependencia-group');
+Route::get('/rastrillo', function(){
+    return view ('rastrillo');
+});
+
+Route::get('/list_rastrillo', [ExamenController::class, 'listarRastrillos']);
+
+Route::get('/editar-rastrillo/{examen}', [ExamenController::class, 'edit'])->name('rastrillos.editar');
+Route::put('/actualizar-rastrillo/{examen}', [ExamenController::class, 'update'])->name('rastrillos.actualizar');
+
+// Ruta para eliminar rastrillos
+Route::delete('/eliminar-rastrillo/{examen}', [ExamenController::class, 'destroy'])->name('rastrillos.eliminar');
+
 
 Route::get('/', function () {
      return redirect()->route('login');
@@ -159,6 +178,40 @@ Route::middleware('auth')->group(function () {
 
     });
 
+    //asignar armamento
+    Route::get('/eliminar-asignacion-armamento/{id}', [AsignarArmamentoPersonalController::class, 'eliminarAsignacionArmamentoPer'])->name('eliminar-asignacion-armamento');
+    Route::get('/obtener-armas', [AsignarArmamentoPersonalController::class, 'obtener_datos_examens'])->name('obtener-armas');
+    Route::get('/asignar_armamento_personal', function(){
+        // Obtener los datos de asignación de armamento personal desde la base de datos
+        $events = DB::table('personals')
+        ->leftJoin('asignar_armamento_personals','asignar_armamento_personals.identificacion','=','personals.id')
+
+         ->select(
+            'personals.id',
+            'personals.identificacion',
+            'personals.nom_ape',
+            'personals.rango',
+
+
+
+
+         )
+        ->get();
+        $heads=[
+            'ID',
+            'Identificación',
+            'Nombres y Apellidos',
+            'Rango',
+            'Distrito',
+            'Tipo de Arma',
+            'Descripción del Arma',
+            'Fecha de Registro',
+            'Hora de Registro',
+            'Opciones'
+        ];
+        // Retornar la vista con los parámetros
+        return view('asignar_armamento_personal', compact('events', 'heads'));
+    });
     //Proceso de Asignacion  de Vehiculo a Personal
     Route::get('/eliminar-asignacion-vehiculos/{id}', [AsignarPersonalVehiculosController::class, 'eliminarAsignacionVehiPer'])->name('eliminar-asignacion-vehiculos');
 
@@ -203,7 +256,6 @@ Route::middleware('auth')->group(function () {
     return view('asignar_peronal_vehiculos', compact('events', 'heads'));
 
     });
-
 
 
     //Proceso Asignacion Vehiculo a Sub circuito
@@ -254,6 +306,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/eliminar-asignacion/{id}', [AsignarPersonalSubcircuitosController::class, 'eliminarAsignacion'])->name('eliminar-asignacion');
     Route::post('/registrar_asig_per_subc', [AsignarPersonalSubcircuitosController::class, 'reg_asig_per_sub'])->name('registrar_asig_per_subc');
      Route::get('/obtener-subcircuito-asig', [SubcircuitoController::class, 'obtener_subcircuito_total']);
+     Route::get('/getTotalEventosPorCircuito/{idCircuito}', 'EventController@getTotalEventosPorCircuito');
+
     Route::get('/asignar_peronal_subcircuitos', function(){
         //Obtenemos los eventos de la BD;
          $events = DB::table('personals')
@@ -648,6 +702,9 @@ Route::middleware('auth')->group(function () {
     });
 
 
+
+});
+Route::get('',function(){
 
 });
 

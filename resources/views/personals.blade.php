@@ -13,7 +13,7 @@
                     <form action="{{ route('registrar_personal') }}" method="post">
                     @csrf
                     <div class="row">
-                        <x-adminlte-input name="iIden" label="Identificacion" placeholder="Ingrese Identificacion" label-class="text-lightblack"  fgroup-class="col-md-6">
+                        <x-adminlte-input name="Identificación" label="Identificacion" placeholder="Ingrese Identificacion" label-class="text-lightblack"  fgroup-class="col-md-6">
                             <x-slot name="prependSlot">
                                 <div class="input-group-text">
                                     <i class="fas fa-user text-lightblack"></i>
@@ -40,7 +40,7 @@
                                 </div>
                             </x-slot>
                         </x-adminlte-input-date>
-                        
+
                         <x-adminlte-input name="iTipoSangre" label="Tipo Sangre" placeholder="Ingrese Tipo Sangre" label-class="text-lightblack"  fgroup-class="col-md-6">
                             <x-slot name="prependSlot">
                                 <div class="input-group-text">
@@ -86,11 +86,11 @@
                                     </x-slot>
                                     <script>
                                         $(document).ready(function () {
-                                          
+
                                                 $.ajax({
                                                     type: 'GET',
-                                                    url: 'obtener-dependencia-group', 
-                                                     
+                                                    url: 'obtener-dependencia-group',
+
                                                     success: function (data) {
                                                        $('#selDependecia').append('<option>SELECCIONE DEPENDENCIA <option>');
 
@@ -102,7 +102,7 @@
                                                         });
                                                     }
                                                 });
-                                          
+
                                         });
                                     </script>
                                 </x-adminlte-select2>
@@ -114,7 +114,7 @@
                             <div class="form-group col-md-12">
                                  <x-adminlte-button type="submit" label="Registrar" theme="primary" icon="fas fa-save" class="w-100"/>
                             </div>
-                   
+
                     </div>
                 </form>
                 </div>

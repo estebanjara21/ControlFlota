@@ -55,7 +55,7 @@ class EventController extends Controller
         'circuitos.descripcion as circuito_nombre',
         'subcircuitos.descripcion as subcircuito_nombre',
         DB::raw('COUNT(events.id) as cantidad_eventos'),
-        DB::raw('CASE WHEN(events.tipo) = 1 THEN "RECLAMO" WHEN (events.tipo) = 2 THEN "SUGERENCIA" ELSE "" END as tipo_evento') 
+        DB::raw('CASE WHEN(events.tipo) = 1 THEN "RECLAMO" WHEN (events.tipo) = 2 THEN "SUGERENCIA" ELSE "" END as tipo_evento')
     )
     ->whereBetween(DB::raw('DATE(events.created_at)'), [$fechaInicio, $fechaFin])
     ->groupBy('events.tipo', 'circuitos.descripcion', 'subcircuitos.descripcion')
@@ -74,6 +74,11 @@ return view('events', compact('events', 'heads', 'fechaInicio', 'fechaFin'));
 }
 
 
+public function getTotalEventosPorCircuito($idCircuito)
+{
+    $totalEventos = Event::where('id_circuito', $idCircuito)->count();
+    return response()->json(['total' => $totalEventos]);
+}
 
 
 
