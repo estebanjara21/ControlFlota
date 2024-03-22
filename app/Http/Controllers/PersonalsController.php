@@ -145,4 +145,12 @@ public function eliminarPersonal($id)
     }
 
 
+    public function obtenerPersonal()
+{
+    // Obtener la columna 'nom_ape' de la tabla 'personals'
+    $personals = Personals::select('nom_ape')->get();
+
+    // Retornar los nombres y apellidos en formato JSON
+    return response()->json($personals);
+}
 }

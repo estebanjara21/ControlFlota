@@ -8,61 +8,7 @@ use Illuminate\Http\Request;
 
 class AsignarArmamentoPersonalController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(AsignarArmamentoPersonal $asignarArmamentoPersonal)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(AsignarArmamentoPersonal $asignarArmamentoPersonal)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, AsignarArmamentoPersonal $asignarArmamentoPersonal)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(AsignarArmamentoPersonal $asignarArmamentoPersonal)
-    {
-        //
-    }
     public function registrar_asig_armamento_per(Request $request)
 
     {
@@ -145,4 +91,20 @@ class AsignarArmamentoPersonalController extends Controller
         // Retornar los datos en formato JSON
         return response()->json($datos_asociativos);
     }
-}
+
+    public function registrar_asig_armamento(Request $request)
+    {
+        // Crear una nueva instancia del modelo y asignar valores
+        $asig = new AsignarArmamentoPersonal();
+        $asig->id_personal = $request->input('id_personal');
+        $asig->tipo_arma = $request->input('tipo_arma');
+        $asig->descripcion_arma = $request->input('descripcion_arma');
+        $asig->estado = '1';
+
+        // Guardar el modelo en la base de datos
+        $asig->save();
+
+        // Puedes redirigir a una vista específica o a la misma página con un mensaje de éxito
+        return redirect()->back()->with('success', 'Registro exitoso');
+    }
+    }

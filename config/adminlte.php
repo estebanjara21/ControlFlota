@@ -550,8 +550,22 @@ return [
                 'url'=>'/asignar_armamento_personal',
             ],
         ],
+
     ],
+    [
+    'text'=> 'Generar Orden Combustible',
+            'submenu'=>[
+            [
+            'text' => 'Orden Combustible',
+            'url' => '/orden',],
+
+            [
+                'text'=>'Lista de Ordenes Combustible',
+                'url'=>'/asignar_armamento_personal',
+            ],
+        ],
     ],
+],
 
     /*
     |--------------------------------------------------------------------------

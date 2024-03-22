@@ -19,6 +19,8 @@ use App\Http\Controllers\PdfController;
 use App\Http\Controllers\MantenimientoController;
 use App\Http\Controllers\ExamenController;
 use App\Http\Controllers\AsignarArmamentoPersonalController;
+use App\Http\Controllers\CombustibleController;
+
 /*AsignarVehiculoSubcircuitosController
 |--------------------------------------------------------------------------
 | Web Routes
@@ -177,10 +179,17 @@ Route::middleware('auth')->group(function () {
         return view ('solicituds');
 
     });
-
+    //orden combstible
+    Route::get('/obtener-asignaciones', [AsignarPersonalVehiculosController::class, 'obtenerTodasAsignaciones'])->name('obtener-asignaciones');
+    Route::post('/registrar-combustible', [CombustibleController::class, 'registrar_combustible'])->name('registrar_combustible');
+    Route::get('/obtener-personal', [PersonalsController::class, 'obtenerPersonal'])->name('obtener-personal');
+    Route::get('/orden', function(){
+        return view ('orden');
+    });
     //asignar armamento
     Route::get('/eliminar-asignacion-armamento/{id}', [AsignarArmamentoPersonalController::class, 'eliminarAsignacionArmamentoPer'])->name('eliminar-asignacion-armamento');
     Route::get('/obtener-armas', [AsignarArmamentoPersonalController::class, 'obtener_datos_examens'])->name('obtener-armas');
+    Route::post('/registrar_asig_armamento', [AsignarPersonalVehiculosController::class, 'registrar_asig_armamento'])->name('registrar_asig_armamento');
     Route::get('/asignar_armamento_personal', function(){
         // Obtener los datos de asignación de armamento personal desde la base de datos
         $events = DB::table('personals')

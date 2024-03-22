@@ -28,7 +28,7 @@
 
                                              @else {{"VACIO"}}
                                             @endif
-zzzz
+
                                                 <br>
                                                 <b>Placa: </b>{{$event->placa}}<br>
                                             @elseif(empty($event->id_subcircuito))
@@ -140,8 +140,6 @@ zzzz
                                    data: {
                                     'id':id_asigna,
                                     'id_subcircuito':nuevoselSubcircuitoU,
-
-
                                     _token: $('meta[name="csrf-token"]').attr('content') },
                                     success: function(response) {
 
@@ -154,16 +152,6 @@ zzzz
                                     }
                                 });
                          }
-
-
-
-
-
-
-
-
-
-
                         function eliminar_Asinacion(id){
                              $.ajax({
                                     url: 'eliminar-asignacion-vehiculos/' + id,
@@ -181,9 +169,7 @@ zzzz
                                         console.error('Error al eliminar el Personal', error);
                                     }
                         });
-
                         }
-
                         function cargardataEliAsig(id, nombre) {
                             $('#modalEliDis [name=iPerso]').val(nombre);
                             $("#eliminar_cir").html('<a href="javascript:eliminar_Asinacion('+id+');" class="btn btn-success" >Eliminar Asignacion</a>');
@@ -206,10 +192,6 @@ zzzz
                                                         });
                                                     }
                                                 });
-
-
-
-
                             $("#agregaras").html('<a href="javascript:agregar_asig('+id_personal+');" class="btn btn-success" >Agregar</a>');
                         }
                        function agregar_asig(id_personal) {

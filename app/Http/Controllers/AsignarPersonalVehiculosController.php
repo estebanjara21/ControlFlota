@@ -7,57 +7,7 @@ use Illuminate\Http\Request;
 
 class AsignarPersonalVehiculosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Asignar_personal_vehiculos $asignar_personal_vehiculos)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Asignar_personal_vehiculos $asignar_personal_vehiculos)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Asignar_personal_vehiculos $asignar_personal_vehiculos)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Asignar_personal_vehiculos $asignar_personal_vehiculos)
     {
         //
@@ -71,7 +21,7 @@ class AsignarPersonalVehiculosController extends Controller
         $asig->id_personal = $request->input('id_personal');
         $asig->id_vehiculo = $request->input('id_vehiculo');
         $asig->estado = '1';
-        
+
         // Asigna otros campos según tu formulario
 
         // Guardar el modelo en la base de datos
@@ -82,7 +32,7 @@ class AsignarPersonalVehiculosController extends Controller
     }
 
       public function eliminarAsignacionVehiPer($id)
-      
+
         {$asignar = Asignar_personal_vehiculos::find($id);
 
     // Verifica si el circuito existe
@@ -101,9 +51,9 @@ class AsignarPersonalVehiculosController extends Controller
 
 
 public function buscardato_personal_vehiculo(Request $request)
-{ 
+{
 
- 
+
 $dato=$request->input('dato');
 $personal = Asignar_personal_vehiculos::join('vehiculos', 'asignar_personal_vehiculos.id_vehiculo', '=', 'vehiculos.id')
     ->join('personals', 'asignar_personal_vehiculos.id_personal', '=', 'personals.id') // Corregir INNER JOIN con personal
@@ -113,13 +63,21 @@ $personal = Asignar_personal_vehiculos::join('vehiculos', 'asignar_personal_vehi
     })
 ->select('vehiculos.tipo_vehiculo', 'vehiculos.placa', 'vehiculos.chasis', 'personals.id','asignar_personal_vehiculos.id_vehiculo','personals.nom_ape') // Agrega las columnas adicionales que desees recuperar
     ->get();
-   
+
    return response()->json($personal);
 
 
 }
 
 
+public function obtenerTodasAsignaciones()
+{
+    // Obtener todas las asignaciones de vehículos con la información necesaria
+    $asignaciones = Asignar_personal_vehiculos::select(['id_personal', 'id_vehiculo'])->get();
+
+    // Retornar las asignaciones en formato JSON
+    return response()->json($asignaciones);
+}
+
 
 }
- 
